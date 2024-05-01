@@ -1,4 +1,3 @@
-obj-m += ws2812.o
 obj-m += snd-slice.o
 
 ifeq ($(KERNELRELEASE),)
@@ -21,14 +20,12 @@ modules_install:
 
 overlays:
 	${DTC} -@ -I dts -O dtb -o slice.dtbo slice-overlay.dts
-	${DTC} -@ -I dts -O dtb -o ws2812.dtbo ws2812-overlay.dts
 
 overlays_install:
-	cp slice.dtbo ws2812.dtbo ${DESTDIR}/boot/overlays
+	cp slice.dtbo ${DESTDIR}/boot/overlays
 
 clean:
 	$(MAKE) -C $(KDIR) M=$(PWD) clean
 	rm -f slice.dtbo
-
 
 endif
