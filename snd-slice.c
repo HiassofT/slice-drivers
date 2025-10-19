@@ -98,25 +98,6 @@ static int snd_slice_hw_params(struct snd_pcm_substream *substream,
 	err = snd_soc_dai_set_sysclk(codec_dai, 0, sysclk,
 				     SND_SOC_CLOCK_OUT);
 
-	ret = snd_soc_dai_set_fmt(cpu_dai, SND_SOC_DAIFMT_I2S |
-				  SND_SOC_DAIFMT_NB_NF |
-				  SND_SOC_DAIFMT_CBM_CFM);
-
-	if (ret) {
-		dev_err(cpu_dai->dev,
-			"Failed to set the cpu dai format.\n");
-		return ret;
-	}
-
-	ret = snd_soc_dai_set_fmt(codec_dai, SND_SOC_DAIFMT_I2S |
-				  SND_SOC_DAIFMT_NB_NF |
-				  SND_SOC_DAIFMT_CBM_CFM);
-	if (ret) {
-		dev_err(cpu_dai->dev,
-			"Failed to set the codec format.\n");
-		return ret;
-	}
-
 	snd_soc_dai_set_bclk_ratio(cpu_dai, 64);
 
 	return 0;
