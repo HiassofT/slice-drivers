@@ -5,15 +5,7 @@
 / {
   compatible = "brcm,bcm2835";
 
-  // disable analog audio
-  fragment@0 {
-    target = <&audio>;
-    __overlay__ {
-      status = "disabled";
-    };
-  };
-
-  // pinctrl definitions
+ // pinctrl definitions
   fragment@1 {
     target = <&gpio>;
     __overlay__ {
