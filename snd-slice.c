@@ -38,8 +38,8 @@ static int snd_slice_hw_params(struct snd_pcm_substream *substream,
 				       struct snd_pcm_hw_params *params)
 {
 	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
-	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
+	struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
+	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
 	int err;
 	int ret;
 	unsigned int rate = params_rate(params);
@@ -238,9 +238,9 @@ snd_soc_register_card_failed:
 	return ret;
 }
 
-static int snd_slice_remove(struct platform_device *pdev)
+static void snd_slice_remove(struct platform_device *pdev)
 {
-	return snd_soc_unregister_card(&snd_slice);
+	snd_soc_unregister_card(&snd_slice);
 }
 
 static const struct of_device_id slice_of_match[] = {
